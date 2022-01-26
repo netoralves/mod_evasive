@@ -76,7 +76,7 @@ echo 'LoadModule evasive24_module /usr/lib64/httpd/modules/mod_evasive24.so' > /
 
 5. Add mod_evasive.conf:
 E.g.: vim /etc/httpd/conf.d/mod_evasive.conf
-
+```
 <IfModule mod_evasive24.c>
     DOSHashTableSize    3097
     DOSPageCount        2
@@ -85,7 +85,7 @@ E.g.: vim /etc/httpd/conf.d/mod_evasive.conf
     DOSSiteInterval     1
     DOSBlockingPeriod   10
 </IfModule>
-
+```
 Optionally you can also add the following directives:
 
     DOSEmailNotify	you@yourdomain.com
