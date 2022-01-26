@@ -52,16 +52,26 @@ APACHE V2.4
 
 3. Run apxs -i -a -c mod_evasive24.c
 
+This step, The module will be built and installed into $APACHE_ROOT/modules, and loaded into your httpd.conf
 For apxs - APache eXtenSion tool
 
-	-i: This indicates the installation operation and installs one or more dynamically shared objects into the server's modules directory.
-	-a This activates the module by automatically adding a corresponding LoadModule line to Apache's httpd.conf configuration file, or by enabling it if it already exists.
-	-c: This indicates the compilation operation. It first compiles the C source files (.c) of files into corresponding object files (.o) and then builds a dynamically shared object in dsofile by linking these object files plus the remaining object files (.o and .a) of files. If no -o option is specified the output file is guessed from the first filename in files and thus usually defaults to mod_name.so.
+## About the options:
+
+-i: This indicates the installation operation and installs one or more dynamically shared objects into the server's modules directory.
+
+-a This activates the module by automatically adding a corresponding LoadModule line to Apache's httpd.conf configuration file, or by enabling it if it already exists.
+
+-c: This indicates the compilation operation. It first compiles the C source files (.c) of files into corresponding object files (.o) and then builds a dynamically shared object in dsofile by linking these object files plus the remaining object files (.o and .a) of files. If no -o option is specified the output file is guessed from the first filename in files and thus usually defaults to mod_name.so.
 
 refLink: https://httpd.apache.org/docs/2.4/programs/apxs.html
 
-4. The module will be built and installed into $APACHE_ROOT/modules, and loaded into your httpd.conf
+NOTE: If you want add load module differently in step 3, in separate file:
 
+3. execute: apxs -i -c mod_evasive24.c and include follow lines in conf.modules.d directory. i.e: 
+
+```
+echo 'LoadModule evasive24_module /usr/lib64/httpd/modules/mod_evasive24.so' > /etc/httpd/conf.modules.d/00-evasive.conf
+```
 4. Restart Apache
 
 5. Add mod_evasive.conf:
