@@ -219,6 +219,33 @@ you get 403 Forbidden messages. Some larger servers with high child counts
 may require more of a beating than smaller servers before blacklisting
 addresses.
 
+If you use AllowOverride none(Default) and dont't have any content in root context dir, change for All and use test.html in your <DOCUMENT_ROOT> dir, i.e:
+```
+sed -i 's/AllowOverride none/AllowOverride All/g' /etc/httpd/conf/httpd.conf
+sed -i 's/DirectoryIndex index.html/DirectoryIndex index.html test.html/g' /etc/httpd/conf/httpd.conf
+cat << EOF > /var/www/html/test.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test Page</title>
+    </head>
+    <body>
+        <p>This is an example of a simple HTML page with one paragraph.</p>
+    </body>
+</html>
+EOF
+
+# Execute test
+perl test.pl
+
+# Expected Output 
+
+
+```
+
+
+
+
 Please don't use this script to DoS others without their permission.
 
 KNOWN BUGS
