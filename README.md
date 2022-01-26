@@ -244,13 +244,17 @@ cat << EOF > /var/www/html/test.html
     </body>
 </html>
 EOF
+```
 
-# restart apache
+Restart apache service
 
-# Execute test
+Execute test
+```
 perl test.pl
+```
 
-# Expected Output example
+Expected Output example
+```
 HTTP/1.1 200 OK
 HTTP/1.1 200 OK
 HTTP/1.1 200 OK
