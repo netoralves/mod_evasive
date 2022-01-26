@@ -79,11 +79,11 @@ E.g.: vim /etc/httpd/conf.d/mod_evasive.conf
 ```
 <IfModule mod_evasive24.c>
     DOSHashTableSize    3097
-    DOSPageCount        2
+    DOSPageCount        5
     DOSSiteCount        50
     DOSPageInterval     1
     DOSSiteInterval     1
-    DOSBlockingPeriod   10
+    DOSBlockingPeriod   300
 </IfModule>
 ```
 Optionally you can also add the following directives:
