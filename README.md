@@ -229,9 +229,8 @@ you get 403 Forbidden messages. Some larger servers with high child counts
 may require more of a beating than smaller servers before blacklisting
 addresses.
 
-If you use AllowOverride None(Default) and dont't have any content in root context dir, change for All and use test.html in your <DOCUMENT_ROOT> dir, i.e:
+If you dont't have any content in root context dir, change for All and use test.html in your ContextDir, i.e:
 ```
-sed -i 's/AllowOverride None/AllowOverride All/g' /etc/httpd/conf/httpd.conf
 sed -i 's/DirectoryIndex index.html/DirectoryIndex index.html test.html/g' /etc/httpd/conf/httpd.conf
 cat << EOF > /var/www/html/test.html
 <!DOCTYPE html>
@@ -275,28 +274,13 @@ HTTP/1.1 403 Forbidden
 HTTP/1.1 403 Forbidden
 HTTP/1.1 403 Forbidden
 HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
-HTTP/1.1 403 Forbidden
 ```
 
+NOTE: Don't forget to rollback the ContextDir config and restart httpd, i.e:
+```
+sed -i 's/DirectoryIndex index.html test.html/DirectoryIndex index.html/g' /etc/httpd/conf/httpd.conf
+systemctl restart httpd
+```
 
 Please don't use this script to DoS others without their permission.
 
